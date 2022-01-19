@@ -1,0 +1,80 @@
+INFO:uvicorn.error:Started server process [52942]
+INFO:uvicorn.error:Waiting for application startup.
+[Wed Jan 19 13:31:21 2022][INFO][main.py][line:15] - starting up
+INFO:uvicorn.error:Application startup complete.
+[Wed Jan 19 13:31:31 2022][INFO][main.py][line:28] - restart db
+INFO:sqlalchemy.engine.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SHOW VARIABLES LIKE 'lower_case_table_names'
+INFO:sqlalchemy.engine.Engine:[generated in 0.00031s] ()
+INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %s AND table_name = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00050s] ('face_reco', 'user')
+INFO:sqlalchemy.engine.Engine:SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %s AND table_name = %s
+INFO:sqlalchemy.engine.Engine:[cached since 0.002794s ago] ('face_reco', 'client')
+INFO:sqlalchemy.engine.Engine:
+DROP TABLE client
+INFO:sqlalchemy.engine.Engine:[no key 0.00065s] ()
+INFO:sqlalchemy.engine.Engine:
+DROP TABLE user
+INFO:sqlalchemy.engine.Engine:[no key 0.00020s] ()
+INFO:sqlalchemy.engine.Engine:SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %s AND table_name = %s
+INFO:sqlalchemy.engine.Engine:[cached since 0.262s ago] ('face_reco', 'user')
+INFO:sqlalchemy.engine.Engine:SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %s AND table_name = %s
+INFO:sqlalchemy.engine.Engine:[cached since 0.2711s ago] ('face_reco', 'client')
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE user (
+	id INTEGER NOT NULL AUTO_INCREMENT, 
+	username VARCHAR(100) NOT NULL, 
+	password VARCHAR(100) NOT NULL, 
+	email VARCHAR(100) NOT NULL, 
+	time_created DATETIME, 
+	PRIMARY KEY (id), 
+	UNIQUE (username), 
+	UNIQUE (email)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.03345s] ()
+INFO:sqlalchemy.engine.Engine:CREATE INDEX ix_user_id ON user (id)
+INFO:sqlalchemy.engine.Engine:[no key 0.01174s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE client (
+	id INTEGER NOT NULL AUTO_INCREMENT, 
+	name VARCHAR(255), 
+	`key` VARCHAR(255) NOT NULL, 
+	active BOOL NOT NULL, 
+	`totalHit` INTEGER, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00030s] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO user (username, password, email, time_created) VALUES (%s, %s, %s, %s)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00074s] ('joy', '$2b$12$81BVmiTZHO.UqWEgzUKvdeD2CClimoq.eoyiGDyIv/KkOjOh4Yz3m', 'joy@gmail.com', datetime.datetime(2022, 1, 19, 13, 31, 21, 717812))
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT user.id, user.username, user.password, user.email, user.time_created 
+FROM user 
+WHERE user.id = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00984s] (1,)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO client (name, `key`, active, `totalHit`) VALUES (%s, %s, %s, %s)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00044s] ('MNC-DSM', '$2b$12$x/LYvtDA/pz4IZN4zGXVtuetifXJflyaMYCIvimsEWJOExVQHL8XW', 1, None)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client 
+WHERE client.id = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00162s] (1,)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:uvicorn.error:Shutting down
+INFO:uvicorn.error:Waiting for application shutdown.
+[Wed Jan 19 13:31:38 2022][INFO][main.py][line:19] - shutting down
+INFO:uvicorn.error:Application shutdown complete.
+INFO:uvicorn.error:Finished server process [52942]

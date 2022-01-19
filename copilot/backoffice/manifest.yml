@@ -1,0 +1,41 @@
+name: backoffice
+type: Load Balanced Web Service
+
+image:
+  build: ./backoffice/dockerfile
+  port: 7070
+
+http:
+  path: "/"
+  healthcheck:
+    path: "/health"
+    succes_codes: 200
+    healthy_threshold: 5
+    unhealthy_threshold: 5
+
+command: ["uvicorn", "app.main:app", "--port", "7070", "--host", "0.0.0.0", "--reload"]
+cpu: 512
+memory: 1024
+count: 1
+exec: true
+
+variables:
+  SERVICE_NAME : Face Recognizer Backoffice
+  LOG_LEVEL : CRITICAL
+  LOG_DISABLE : false
+
+tags:
+  project: face-recognizer-api-project
+
+environments:
+  development:
+    count:
+      spot: 1
+  production:
+    count:
+      range:
+        min: 1
+        max: 3
+      cpu_percentage: 70
+      memory_percentage: 80
+      requests: 100

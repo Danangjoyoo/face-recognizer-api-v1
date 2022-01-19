@@ -1,0 +1,32 @@
+INFO:uvicorn.error:Started server process [49522]
+INFO:uvicorn.error:Waiting for application startup.
+[Wed Jan 19 13:16:55 2022][INFO][main.py][line:15] - starting up
+INFO:uvicorn.error:Application startup complete.
+INFO:sqlalchemy.engine.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SHOW VARIABLES LIKE 'lower_case_table_names'
+INFO:sqlalchemy.engine.Engine:[generated in 0.00322s] ()
+INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT user.id, user.username, user.password, user.email, user.time_created 
+FROM user 
+WHERE user.username = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00664s] ('joy',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+[Wed Jan 19 13:17:39 2022][INFO][utils.py][line:353] - client-read
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT client.id AS id, client.name AS name, client.`key` AS `key`, client.active AS active, client.`totalHit` AS `totalHit` 
+FROM client) AS anon_1
+INFO:sqlalchemy.engine.Engine:[generated in 0.00096s] ()
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client ORDER BY client.id ASC 
+ LIMIT %s, %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00344s] (0, 20)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:uvicorn.error:Shutting down
+INFO:uvicorn.error:Waiting for application shutdown.
+[Wed Jan 19 13:18:56 2022][INFO][main.py][line:19] - shutting down
+INFO:uvicorn.error:Application shutdown complete.
+INFO:uvicorn.error:Finished server process [49522]

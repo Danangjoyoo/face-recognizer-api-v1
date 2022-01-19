@@ -1,0 +1,84 @@
+INFO:uvicorn.error:Started server process [51310]
+INFO:uvicorn.error:Waiting for application startup.
+[Wed Jan 19 13:22:54 2022][INFO][main.py][line:15] - starting up
+INFO:uvicorn.error:Application startup complete.
+INFO:sqlalchemy.engine.Engine:SHOW VARIABLES LIKE 'sql_mode'
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SHOW VARIABLES LIKE 'lower_case_table_names'
+INFO:sqlalchemy.engine.Engine:[generated in 0.00033s] ()
+INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT user.id, user.username, user.password, user.email, user.time_created 
+FROM user 
+WHERE user.username = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00045s] ('joy',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+[Wed Jan 19 13:23:19 2022][INFO][utils.py][line:353] - client-read
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT client.id AS id, client.name AS name, client.`key` AS `key`, client.active AS active, client.`totalHit` AS `totalHit` 
+FROM client) AS anon_1
+INFO:sqlalchemy.engine.Engine:[generated in 0.00053s] ()
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client ORDER BY client.id ASC 
+ LIMIT %s, %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00135s] (0, 20)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+[Wed Jan 19 13:23:32 2022][INFO][utils.py][line:353] - client-update
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client 
+WHERE client.id = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00110s] (1,)
+INFO:sqlalchemy.engine.Engine:UPDATE client SET name=%s, `key`=%s, `totalHit`=%s WHERE client.id = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00075s] ('123', '$2b$12$5hc4U2gYnctjlC3j2gwKSu7GwNDoaJbilwO24P0gw4es/j62Hr9qy', 100, 1)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client 
+WHERE client.id = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00325s] (1,)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+[Wed Jan 19 13:23:37 2022][INFO][utils.py][line:353] - client-read
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT client.id AS id, client.name AS name, client.`key` AS `key`, client.active AS active, client.`totalHit` AS `totalHit` 
+FROM client) AS anon_1
+INFO:sqlalchemy.engine.Engine:[cached since 17.29s ago] ()
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client ORDER BY client.id ASC 
+ LIMIT %s, %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00060s] (0, 20)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+[Wed Jan 19 13:23:43 2022][INFO][utils.py][line:353] - client-update
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client 
+WHERE client.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 11.67s ago] (1,)
+INFO:sqlalchemy.engine.Engine:UPDATE client SET `key`=%s, `totalHit`=%s WHERE client.id = %s
+INFO:sqlalchemy.engine.Engine:[generated in 0.00665s] ('$2b$12$ppenvCLtCxCJiS3rAJvAxeCRFQv87GsevaJ8OMeUAX5OMQzwKs/La', None, 1)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client 
+WHERE client.id = %s
+INFO:sqlalchemy.engine.Engine:[cached since 11.67s ago] (1,)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+[Wed Jan 19 13:23:48 2022][INFO][utils.py][line:353] - client-read
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT count(*) AS count_1 
+FROM (SELECT client.id AS id, client.name AS name, client.`key` AS `key`, client.active AS active, client.`totalHit` AS `totalHit` 
+FROM client) AS anon_1
+INFO:sqlalchemy.engine.Engine:[cached since 28.77s ago] ()
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client.`key`, client.active, client.`totalHit` 
+FROM client ORDER BY client.id ASC 
+ LIMIT %s, %s
+INFO:sqlalchemy.engine.Engine:[cached since 11.48s ago] (0, 20)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:uvicorn.error:Shutting down
+INFO:uvicorn.error:Waiting for application shutdown.
+[Wed Jan 19 13:24:16 2022][INFO][main.py][line:19] - shutting down
+INFO:uvicorn.error:Application shutdown complete.
+INFO:uvicorn.error:Finished server process [51310]

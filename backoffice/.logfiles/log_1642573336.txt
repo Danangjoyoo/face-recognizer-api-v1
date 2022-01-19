@@ -1,0 +1,9 @@
+INFO:uvicorn.error:Started server process [50961]
+INFO:uvicorn.error:Waiting for application startup.
+[Wed Jan 19 13:22:17 2022][INFO][main.py][line:15] - starting up
+INFO:uvicorn.error:Application startup complete.
+INFO:uvicorn.error:Shutting down
+INFO:uvicorn.error:Waiting for application shutdown.
+[Wed Jan 19 13:22:24 2022][INFO][main.py][line:19] - shutting down
+INFO:uvicorn.error:Application shutdown complete.
+INFO:uvicorn.error:Finished server process [50961]

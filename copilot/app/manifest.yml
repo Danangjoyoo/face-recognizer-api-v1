@@ -1,0 +1,42 @@
+name: app
+type: Load Balanced Web Service
+
+image:
+  build: ./dockerfile
+  port: 7000
+  args:
+    t: face-reco-app
+
+http:
+  path: "/"
+  healthcheck:
+    path: "/health"
+    success_code: 200
+    healthy_threshold: 5
+    unhealthy_threshold: 5
+    interval: 60s
+    timeout: 10s
+
+# command: ["uvicorn", "app.main:app", "--port", "7000", "--host", "0.0.0.0", "--reload"]
+cpu: 1024
+memory: 2048
+count: 1
+exec: true
+
+variables:
+  SERVICE_NAME : Face Recognizer
+  LOG_LEVEL : CRITICAL
+  LOG_DISABLE : false
+
+environments:
+  development:
+    count:
+      spot: 1
+  production:
+    count:
+      range:
+        min: 1
+        max: 5
+      cpu_percentage: 70
+      memory_percentage: 80
+      requests: 100

@@ -1,0 +1,16 @@
+FROM mysql:5.7
+RUN apt-get update
+RUN apt-get install -y mysql-client
+RUN apt-get install -y mysql-server
+RUN apt-get install -y openssh-server
+ENV MYSQL_USER="local"
+ENV MYSQL_PORT="3306"
+ENV MYSQL_PASSWORD="local123"
+ENV MYSQL_ROOT_PASSWORD="mncinnocent"
+ENV MYSQL_DATABASE="face_reco"
+EXPOSE 3306
+
+# build docker
+#   docker build -t db-face-reco .
+# run docker
+#   docker run -p 0.0.0.0:3306:3306 --name db-face-rec-container db-face-reco

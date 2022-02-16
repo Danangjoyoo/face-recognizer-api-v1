@@ -1,5 +1,5 @@
 name: app
-type: Load Balanced Web Service
+type: Request-Driven Web Service
 
 image:
   build: ./dockerfile

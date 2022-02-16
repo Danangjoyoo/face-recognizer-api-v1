@@ -2,6 +2,35 @@
 
 face recognition using mediapipe python
 
+## Deploy FastAPI To Shared Hosting
+1. Open cpanel, find `setup python app`
+2. Fill the detail below:
+    - Application root -> "/home/${username}/${your project fastapi path}
+    - Application URL -> fill where you want to access it
+    - Application startup file -> "main.py" (fastapi app declaration)
+    - Application Entry Poin -> app (directory containing main.py)
+3. Start ssh
+4. clone your project
+5. create `.htaccess` on project directory
+    ```
+    Options +FollowSymLinks -Indexes
+    IndexIgnore *
+    DirectoryIndex
+    <IfModule mod_rewrite.c>
+    RewriteEngine on
+    # Simple URL redirect:
+    RewriteRule ^(.*)$ http://127.0.0.1:35800/$1 [P]
+    </IfModule>
+    ```
+5. Install gunicorn then run
+    ```
+    gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 127.0.0.1:35800
+    ```
+6. or using uvicorn
+    ```
+    uvicorn app.main:app --host 127.0.0.1 --port 35800
+    ```
+
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.

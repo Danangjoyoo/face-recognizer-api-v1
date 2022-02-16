@@ -1,4 +1,5 @@
 import logging, os, time
+from datetime import datetime
 from io import StringIO
 from typing import List
 
@@ -23,7 +24,8 @@ class LogFilter(logging.Filter):
         self.levels = list(range(0,level+10,10))
         self._unapplied = ["_logFormat","_unapplied","filter","_applyAttr","_logName"]
         self._logFormat = logFormat
-        self._logName = f"./app/.logfiles/log_{int(time.time())}.txt"
+        tnow = datetime.now().isoformat().replace("T","_")[:19]
+        self._logName = f"./app/.logfiles/log_{tnow}.txt"
         self._saveToFile = saveToFile
         logging.basicConfig(filename=self._logName)
         if AdditionalKeyValues:
@@ -78,7 +80,7 @@ class AppLogger(logging.getLoggerClass()):
         self._filter.levels = levels
 
 globalFilter = LogFilter(
-    logFormat = '[%(asctime)s][%(levelname)s][%(filename)s][line:%(lineno)s] - %(message)s',
+    logFormat = '[%(asctime)s][%(levelname)s][FaceRecoApp][%(filename)s][line:%(lineno)s] - %(message)s',
     level = os.getenv('LOG_LEVEL'),
     saveToFile = os.getenv("LOG_SAVE").lower() == "true"
     )

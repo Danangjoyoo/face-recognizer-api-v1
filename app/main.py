@@ -5,7 +5,7 @@ from .dependencies.utils import create_response, status
 from .dependencies.log import logger
 from .database.connection import create_db, mock_data
 
-from .routers.modFaceReco.rest import router as faceReco
+from .routers.modeFaceCounter.rest import router as faceReco
 
 app = FastAPI(title="Face Recognizer Application")
 

@@ -1,0 +1,33 @@
+INFO:uvicorn.error:Started server process [12748]
+INFO:uvicorn.error:Waiting for application startup.
+[Thu Feb 17 06:15:33 2022][INFO][FaceRecoApp][main.py][line:14] - starting up
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("user")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("client")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO user (username, password, email, time_created) VALUES (?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00025s] ('joy', '$2b$12$81BVmiTZHO.UqWEgzUKvdeD2CClimoq.eoyiGDyIv/KkOjOh4Yz3m', 'joy@gmail.com', '2022-02-17 06:15:32.652329')
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+[Thu Feb 17 06:15:33 2022][ERROR][FaceRecoApp][connection.py][line:57] - (sqlite3.IntegrityError) UNIQUE constraint failed: user.email
+[SQL: INSERT INTO user (username, password, email, time_created) VALUES (?, ?, ?, ?)]
+[parameters: ('joy', '$2b$12$81BVmiTZHO.UqWEgzUKvdeD2CClimoq.eoyiGDyIv/KkOjOh4Yz3m', 'joy@gmail.com', '2022-02-17 06:15:32.652329')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO client (name, "key", active, "totalHit") VALUES (?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ('MNC-DSM', '$2b$12$x/LYvtDA/pz4IZN4zGXVtuetifXJflyaMYCIvimsEWJOExVQHL8XW', 1, 0)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT client.id, client.name, client."key", client.active, client."totalHit" 
+FROM client 
+WHERE client.id = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00036s] (22,)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:uvicorn.error:Application startup complete.
+INFO:uvicorn.error:Shutting down
+INFO:uvicorn.error:Waiting for application shutdown.
+[Thu Feb 17 06:15:55 2022][INFO][FaceRecoApp][main.py][line:20] - shutting down
+INFO:uvicorn.error:Application shutdown complete.
+INFO:uvicorn.error:Finished server process [12748]

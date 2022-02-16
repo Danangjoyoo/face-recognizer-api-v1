@@ -1,4 +1,4 @@
-from fastapi import Request, Depends, Header
+from fastapi import Request, Depends, Header, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -40,4 +40,4 @@ async def validate_token(session: AsyncSession, token: str):
 async def validate_request_token(token: str = Header(...)):
     async with connection.async_session() as session:
         if not await validate_token(session, token):
-            return create_response(status=status.not_authorized())
+            raise HTTPException(status_code=403, detail="not authorized")
